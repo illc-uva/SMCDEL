@@ -1,5 +1,15 @@
 image: m4lvin/smcdel-ci:16.1
 
+before_script:
+  - apt-get install -y unzip
+  - curl -L "https://github.com/ivmai/cudd/archive/f54f533303640afd5dbe47a05ebeabb3066f2a25.tar.gz" -o cudd.tar.gz
+    && tar xvf cudd.tar.gz
+    && cd cudd-f54f533303640afd5dbe47a05ebeabb3066f2a25
+    && ./configure --enable-shared --enable-dddmp --enable-silent-rules --prefix=/usr
+    && make -j4 check
+    && make install
+    && cp config.h mtr/mtr.h util/util.h cudd/cudd.h dddmp/dddmp.h /usr/include
+
 build:
   script:
     - stack --no-terminal test --coverage

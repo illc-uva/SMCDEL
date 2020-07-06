@@ -28,7 +28,7 @@ library:
     - base >= 4.8 && < 5
     - array
     - containers
-    - cudd == 0.1.0.0
+    - cudd >= 0.1.0.4
     - graphviz
     - HasCacBDD >= 0.1.0.3 && < 0.2
     - process
